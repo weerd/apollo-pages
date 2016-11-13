@@ -4,7 +4,7 @@ namespace Weerd\ApolloPages;
 
 use Illuminate\Support\ServiceProvider;
 
-class ApolloPageServiceProvider extends ServiceProvider
+class ApolloPagesServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
