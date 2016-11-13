@@ -1,5 +1,7 @@
 <?php
 
+namespace Weerd\ApolloPages;
+
 use Illuminate\Support\ServiceProvider;
 
 class ApolloPageServiceProvider extends ServiceProvider
