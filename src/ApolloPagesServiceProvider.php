@@ -15,7 +15,7 @@ class ApolloPagesServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Weerd\ApolloPages\Console\MakePagesCommand::class,
+                Console\MakePagesCommand::class,
             ]);
         }
 
