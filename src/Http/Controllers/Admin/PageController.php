@@ -10,18 +10,18 @@ class PageController extends Controller
     // like the laravel/laravel package does?
 
     /**
-     * Display the specified client page.
+     * Display the specified admin page.
      *
-     * @param  string  $page
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
-        // $page, $category = null
-        // $page = Page::findBySlug($page);
+        // $slug
+        // $page = Page::findBySlug($slug);
 
-        // return view('pages.client.show', ['page' => $page]);
+        // return view('pages.admin.show', ['page' => $page]);
 
-        return 'showing client view...';
+        return 'showing admin view...';
     }
 }

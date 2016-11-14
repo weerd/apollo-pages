@@ -14,6 +14,10 @@ class ApolloPagesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        if (! $this->app->routesAreCached()) {
+            require __DIR__.'/routes/web.php';
+        }
     }
 
     /**
