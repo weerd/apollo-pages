@@ -28,7 +28,7 @@ class ApolloPagesServiceProvider extends ServiceProvider
     public function register()
     {
         // Register controllers
-        $this->app->make('Weerd\ApolloPages\Http\Controllers\Admin\PageController');
-        $this->app->make('Weerd\ApolloPages\Http\Controllers\Client\PageController');
+        // $this->app->make('Weerd\ApolloPages\Http\Controllers\Admin\PageController');
+        // $this->app->make('Weerd\ApolloPages\Http\Controllers\Client\PageController');
     }
 }
