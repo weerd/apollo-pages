@@ -1,5 +1,3 @@
-<?php
-
 // Admin Routes
 Route::group(['namespace' => 'Weerd\ApolloPages\Http\Controllers\Admin', 'prefix' => 'admin'], function() {
     Route::get('{page}', 'PageController@show');
