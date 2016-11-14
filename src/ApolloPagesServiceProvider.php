@@ -18,6 +18,18 @@ class ApolloPagesServiceProvider extends ServiceProvider
         if (! $this->app->routesAreCached()) {
             require __DIR__.'/routes/web.php';
         }
+
+        // $this->publishes([
+        //     __DIR__.'/../config/package.php' => config_path('package.php')
+        // ], 'config');
+
+        // $this->publishes([
+        //     __DIR__.'/../database/migrations/' => database_path('migrations')
+        // ], 'migrations');
+
+        $this->publishes([
+            __DIR__.'/Http/Controllers/Admin/PageController.php' => app_path('Http/Controllers/Admin/PageController.php')
+        ], 'controllers');
     }
 
     /**
