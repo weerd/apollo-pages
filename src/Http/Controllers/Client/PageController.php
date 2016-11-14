@@ -9,6 +9,11 @@ class PageController extends Controller
     // @TODO: would it be better to create BaseController with additional traits
     // like the laravel/laravel package does?
 
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
+
     /**
      * Display the specified client page.
      *
