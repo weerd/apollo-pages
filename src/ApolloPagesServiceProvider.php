@@ -28,7 +28,8 @@ class ApolloPagesServiceProvider extends ServiceProvider
         // ], 'migrations');
 
         $this->publishes([
-            __DIR__.'/Http/Controllers/Admin/PageController.php' => app_path('Http/Controllers/Admin/PageController.php')
+            __DIR__.'/Http/Controllers/Admin/PageController.php' => app_path('Http/Controllers/Admin/PageController.php'),
+            __DIR__.'/Http/Controllers/Client/PageController.php' => app_path('Http/Controllers/Test/PageController.php')
         ], 'controllers');
     }
 
