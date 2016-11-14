@@ -1,6 +1,6 @@
 <?php
 
-namespace Weerd\ApolloPages\Http\Controllers\Client;
+namespace Weerd\ApolloPages\Http\Controllers\Admin;
 
 use Illuminate\Routing\Controller;
 
