@@ -21,7 +21,7 @@ Within your Laravel project, open `config/app.php` and, within the `providers` a
 ```php
 'providers' => [
     // ...
-    DoSomething\Gateway\Laravel\GatewayServiceProvider::class,
+    Weerd\ApolloPages\ApolloPagesServiceProvider::class,
     //...
 ],
 ```
