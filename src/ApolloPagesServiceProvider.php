@@ -20,20 +20,6 @@ class ApolloPagesServiceProvider extends ServiceProvider
         }
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-
-        // $this->publishes([
-        //     __DIR__.'/../config/package.php' => config_path('package.php')
-        // ], 'config');
-
-        // $this->publishes([
-        //     __DIR__.'/../database/migrations/' => database_path('migrations')
-        // ], 'migrations');
-
-        // Copy controller classes to project and create directories if they do not exist.
-        // $this->publishes([
-        //     __DIR__.'/Http/Controllers/Admin/PageController.php' => app_path('Http/Controllers/Admin/PageController.php'),
-        //     __DIR__.'/Http/Controllers/Client/PageController.php' => app_path('Http/Controllers/Client/PageController.php')
-        // ], 'controllers');
     }
 
     /**
