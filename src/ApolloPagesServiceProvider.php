@@ -15,15 +15,11 @@ class ApolloPagesServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Console\MakePagesCommand::class,
+                Console\ApolloPagesCommand::class,
             ]);
         }
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-
-        // if (! $this->app->routesAreCached()) {
-        //     require __DIR__.'/routes/web.php';
-        // }
 
         // $this->publishes([
         //     __DIR__.'/../config/package.php' => config_path('package.php')
@@ -34,10 +30,10 @@ class ApolloPagesServiceProvider extends ServiceProvider
         // ], 'migrations');
 
         // Copy controller classes to project and create directories if they do not exist.
-        $this->publishes([
-            __DIR__.'/Http/Controllers/Admin/PageController.php' => app_path('Http/Controllers/Admin/PageController.php'),
-            __DIR__.'/Http/Controllers/Client/PageController.php' => app_path('Http/Controllers/Client/PageController.php')
-        ], 'controllers');
+        // $this->publishes([
+        //     __DIR__.'/Http/Controllers/Admin/PageController.php' => app_path('Http/Controllers/Admin/PageController.php'),
+        //     __DIR__.'/Http/Controllers/Client/PageController.php' => app_path('Http/Controllers/Client/PageController.php')
+        // ], 'controllers');
     }
 
     /**
