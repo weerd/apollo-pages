@@ -3,9 +3,12 @@
 namespace Weerd\ApolloPages\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Console\AppNamespaceDetectorTrait;
 
 class ApolloPagesCommand extends Command
 {
+    use AppNamespaceDetectorTrait;
+
     /**
      * The name and signature of the console command.
      *
