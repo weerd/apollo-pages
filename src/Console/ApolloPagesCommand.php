@@ -42,7 +42,7 @@ class ApolloPagesCommand extends Command
     {
         file_put_contents(
             app_path('Http/Controllers/Admin/PageController.php'),
-            $this->compileControllerStub('/stubs/make/controller/admin/pagecontroller.stub')
+            $this->compileControllerStub('/stubs/make/controllers/admin/pagecontroller.stub')
         );
 
         file_put_contents(
