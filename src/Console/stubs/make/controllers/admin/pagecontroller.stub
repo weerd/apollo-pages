@@ -2,9 +2,9 @@
 
 namespace {{namespace}}Http\Controllers\Admin;
 
-use Illuminate\Routing\Controller;
+use Weerd\Http\Controllers\ApolloController;
 
-class PageController extends Controller
+class PageController extends ApolloController
 {
     /**
      * Create a new controller instance.
