@@ -22,7 +22,17 @@ class ApolloPagesCommand extends Command
      * @var string
      */
     protected $description = 'Scaffold the necessary files to construct pages';
-
+	
+	/**
+	 * List of controller files to scaffold.
+	 *
+	 * @var array
+	 */
+	protected $controllers = [
+    	'/stubs/make/controllers/admin/pagecontroller.stub' => 'Http/Controllers/Admin/PageController.php',
+    	'/stubs/make/controllers/client/pagecontroller.stub' => 'Http/Controllers/Client/PageController.php',
+    ];
+	
     /**
      * Create a new command instance.
      *
@@ -40,10 +50,16 @@ class ApolloPagesCommand extends Command
      */
     public function handle()
     {
-        file_put_contents(
-            app_path('Http/Controllers/Admin/PageController.php'),
-            $this->compileControllerStub('/stubs/make/controllers/admin/pagecontroller.stub')
-        );
+    	// Add controller scaffold files.
+    	foreach ($this->controllers as $stub => $controller) {
+    		file_put_contents(
+            	app_path($controller),
+            	$this->compileControllerStub($stub)
+        	);
+    	}
+    	
+    	// Append to routes file.
+    	$this->info('Page controllers added successfully.');
 
         file_put_contents(
             base_path('routes/web.php'),
@@ -54,6 +70,11 @@ class ApolloPagesCommand extends Command
         $this->info('Pages routes appended successfully.');
     }
 
+	/**
+	 * Compile the controller stub with the proper namespace.
+	 *
+	 * @return string
+	 */
     protected function compileControllerStub($path)
     {
         return str_replace(

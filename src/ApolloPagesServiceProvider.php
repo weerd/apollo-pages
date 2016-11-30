@@ -23,7 +23,7 @@ class ApolloPagesServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap the application services.
+     * Register the service provider.
      *
      * @return void
      */
