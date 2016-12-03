@@ -11,7 +11,7 @@ _more to come..._
 From the command line, run:
 
 ```shell
-composer require ... // the project is still in development and will be on packagist.org soon
+composer require ... # the project is still in development and will be on packagist.org soon
 ```
 
 ### Step 2: Service Provider

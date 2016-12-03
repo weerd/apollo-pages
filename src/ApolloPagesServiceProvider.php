@@ -15,7 +15,7 @@ class ApolloPagesServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Console\ApolloPagesCommand::class,
+                Console\ScaffoldCommand::class,
             ]);
         }
 

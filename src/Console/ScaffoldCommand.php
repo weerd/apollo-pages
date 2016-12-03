@@ -5,7 +5,7 @@ namespace Weerd\ApolloPages\Console;
 use Illuminate\Console\Command;
 use Illuminate\Console\AppNamespaceDetectorTrait;
 
-class ApolloPagesCommand extends Command
+class ScaffoldCommand extends Command
 {
     use AppNamespaceDetectorTrait;
 
@@ -21,8 +21,8 @@ class ApolloPagesCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Scaffold the necessary files to construct pages';
-	
+    protected $description = 'Scaffold the necessary files to enable pages';
+
 	/**
 	 * List of controller files to scaffold.
 	 *
@@ -32,7 +32,7 @@ class ApolloPagesCommand extends Command
     	'/stubs/make/controllers/admin/pagecontroller.stub' => 'Http/Controllers/Admin/PageController.php',
     	'/stubs/make/controllers/client/pagecontroller.stub' => 'Http/Controllers/Client/PageController.php',
     ];
-	
+
     /**
      * Create a new command instance.
      *
@@ -57,10 +57,10 @@ class ApolloPagesCommand extends Command
             	$this->compileControllerStub($stub)
         	);
     	}
-    	
-    	// Append to routes file.
-    	$this->info('Page controllers added successfully.');
 
+        $this->info('Page controllers added successfully.');
+
+    	// Append to routes file.
         file_put_contents(
             base_path('routes/web.php'),
             file_get_contents(__DIR__.'/stubs/make/routes/web.stub'),
