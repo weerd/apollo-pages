@@ -116,7 +116,7 @@ class ScaffoldCommand extends Command
 
         // Add view scaffold files.
         foreach ($this->views as $stub => $view) {
-            file_put_contents(base_path($view), $stub);
+            file_put_contents(base_path($view), file_get_contents(__DIR__.$stub));
         }
 
         $this->info('ApolloPages views added successfully.');
