@@ -34,6 +34,18 @@ class ScaffoldCommand extends Command
     ];
 
     /**
+     * List of directories to scaffold.
+     *
+     * @var array
+     */
+    protected $directories = [
+        'Http/Controllers/Admin',
+        'Http/Controllers/Client',
+        'resources/views/pages/admin',
+        'resources/views/pages/client',
+    ];
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -50,14 +62,9 @@ class ScaffoldCommand extends Command
      */
     public function handle()
     {
-        // Add the Admin directory in the Http/Controllers directory.
-        if (! is_dir(app_path('Http/Controllers/Admin'))) {
-            mkdir(app_path('Http/Controllers/Admin'), 0644, true);
-        }
-
-        // Add the Client directory in the Http/Controllers directory.
-        if (! is_dir(app_path('Http/Controllers/Client'))) {
-            mkdir(app_path('Http/Controllers/Client'), 0644, true);
+        // Make the specified directories.
+        foreach ($this->directories as $directory) {
+            $this->makeDirectory($directory);
         }
 
     	// Add controller scaffold files.
@@ -92,5 +99,18 @@ class ScaffoldCommand extends Command
             $this->getAppNamespace(),
             file_get_contents(__DIR__.$path)
         );
+    }
+
+    /**
+     * Make the directory for the specified path.
+     *
+     * @param  string $path [description]
+     * @return void
+     */
+    protected function makeDirectory($path)
+    {
+        if (! is_dir(app_path($path))) {
+            mkdir(app_path($path), 0644, true);
+        }
     }
 }
