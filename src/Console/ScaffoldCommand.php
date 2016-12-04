@@ -39,8 +39,8 @@ class ScaffoldCommand extends Command
      * @var array
      */
     protected $directories = [
-        'Http/Controllers/Admin',
-        'Http/Controllers/Client',
+        'app/Http/Controllers/Admin',
+        'app/Http/Controllers/Client',
         'resources/views/pages/admin',
         'resources/views/pages/client',
     ];
@@ -109,8 +109,8 @@ class ScaffoldCommand extends Command
      */
     protected function makeDirectory($path)
     {
-        if (! is_dir(app_path($path))) {
-            mkdir(app_path($path), 0644, true);
+        if (! is_dir(base_path($path))) {
+            mkdir(base_path($path), 0644, true);
         }
     }
 }
