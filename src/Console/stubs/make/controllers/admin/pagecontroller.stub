@@ -2,10 +2,16 @@
 
 namespace {{namespace}}Http\Controllers\Admin;
 
-use Weerd\Http\Controllers\ApolloController;
+use Weerd\ApolloPages\Http\Controllers\ApolloPageController;
 
-class PageController extends ApolloController
+class PageController extends ApolloPageController
 {
+    /**
+     * Specifies the controller type.
+     * @var string
+     */
+    public $type = 'admin';
+
     /**
      * Create a new controller instance.
      *
@@ -24,9 +30,6 @@ class PageController extends ApolloController
      */
     public function show()
     {
-        // $slug
-        // $page = Page::findBySlug($slug);
-
         // return view('pages.admin.show', ['page' => $page]);
 
         return 'showing admin view...';
