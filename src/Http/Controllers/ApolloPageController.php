@@ -5,7 +5,13 @@ namespace Weerd\ApolloPages\Http\Controllers;
 use Illuminate\Http\Controller as BaseController;
 use Weerd\ApolloPages\Models\ApolloPage;
 
-class ApolloPageController extends BaseController implements ApolloPageConttract {
+class ApolloPageController extends BaseController {
+    /**
+     * [$type description]
+     * @var string
+     */
+    public $type = 'client';
+
 	/**
      * Display a list of pages.
      *
