@@ -33,16 +33,15 @@ class ScaffoldCommand extends Command
     	'/stubs/make/controllers/client/pagecontroller.stub' => 'Http/Controllers/Client/PageController.php',
     ];
 
-    /**
-     * List of directories to scaffold.
-     *
-     * @var array
-     */
-    protected $directories = [
-        'app/Http/Controllers/Admin',
-        'app/Http/Controllers/Client',
-        'resources/views/pages/admin',
-        'resources/views/pages/client',
+    protected $views = [
+        '/stubs/make/views/index.stub' => 'resources/views/pages/admin/index.blade.php',
+        '/stubs/make/views/show.stub' => 'resources/views/pages/admin/show.blade.php',
+        '/stubs/make/views/edit.stub' => 'resources/views/pages/admin/edit.blade.php',
+        '/stubs/make/views/delete.stub' => 'resources/views/pages/admin/delete.blade.php',
+        '/stubs/make/views/index.stub' => 'resources/views/pages/client/index.blade.php',
+        '/stubs/make/views/show.stub' => 'resources/views/pages/client/show.blade.php',
+        '/stubs/make/views/edit.stub' => 'resources/views/pages/client/edit.blade.php',
+        '/stubs/make/views/delete.stub' => 'resources/views/pages/client/delete.blade.php',
     ];
 
     /**
@@ -62,55 +61,94 @@ class ScaffoldCommand extends Command
      */
     public function handle()
     {
-        // Make the specified directories.
-        foreach ($this->directories as $directory) {
-            $this->makeDirectory($directory);
+        $this->addControllers();
+
+        $this->addViews();
+
+        $this->appendRoutes();
+    }
+
+    /**
+     * Add the specified controllers.
+     *
+     * @return void
+     */
+    protected function addControllers()
+    {
+        $directories = [
+            'Http/Controllers/Admin',
+            'Http/Controllers/Client',
+        ];
+
+        // Make the controller directories.
+        foreach ($directories as $directory) {
+            if (! is_dir(app_path($directory))) {
+                mkdir(app_path($directory), 0644, true);
+            }
         }
 
-    	// Add controller scaffold files.
-    	foreach ($this->controllers as $stub => $controller) {
-    		file_put_contents(
-            	app_path($controller),
-            	$this->compileControllerStub($stub)
-        	);
-    	}
+        // Add controller scaffold files.
+        foreach ($this->controllers as $stub => $controller) {
+            file_put_contents(app_path($controller), $this->compileNamespaceToStub($stub));
+        }
 
-        $this->info('Page controllers added successfully.');
+        $this->info('ApolloPages controllers added successfully.');
+    }
 
-    	// Append to routes file.
+    /**
+     * Add the specified views.
+     *
+     * @return void
+     */
+    protected function addViews()
+    {
+        $directories = [
+            'resources/views/pages/admin',
+            'resources/views/pages/client',
+        ];
+
+        // Make the view directories.
+        foreach ($directories as $directory) {
+            if (! is_dir(base_path($directory))) {
+                mkdir(base_path($directory), 0644, true);
+            }
+        }
+
+        // Add view scaffold files.
+        foreach ($this->views as $stub => $view) {
+            file_put_contents(base_path($view), $stub);
+        }
+
+        $this->info('ApolloPages views added successfully.');
+    }
+
+    /**
+     * Append the specified routes to the project routes.
+     *
+     * @return void
+     */
+    protected function appendRoutes()
+    {
         file_put_contents(
             base_path('routes/web.php'),
             file_get_contents(__DIR__.'/stubs/make/routes/web.stub'),
             FILE_APPEND
         );
 
-        $this->info('Pages routes appended successfully.');
+        $this->info('ApolloPages routes appended successfully.');
     }
 
 	/**
-	 * Compile the controller stub with the proper namespace.
+	 * Compile the stub with the proper namespace.
 	 *
 	 * @return string
 	 */
-    protected function compileControllerStub($path)
+    protected function compileNamespaceToStub($path)
     {
         return str_replace(
             '{{namespace}}',
             $this->getAppNamespace(),
             file_get_contents(__DIR__.$path)
         );
-    }
-
-    /**
-     * Make the directory for the specified path.
-     *
-     * @param  string $path [description]
-     * @return void
-     */
-    protected function makeDirectory($path)
-    {
-        if (! is_dir(base_path($path))) {
-            mkdir(base_path($path), 0644, true);
-        }
     }
 }
