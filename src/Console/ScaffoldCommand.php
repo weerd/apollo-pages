@@ -33,15 +33,18 @@ class ScaffoldCommand extends Command
     	'/stubs/make/controllers/client/pagecontroller.stub' => 'Http/Controllers/Client/PageController.php',
     ];
 
+    /**
+     * List of view files to scaffold.
+     *
+     * @var array
+     */
     protected $views = [
-        '/stubs/make/views/index.stub' => 'resources/views/pages/admin/index.blade.php',
-        '/stubs/make/views/show.stub' => 'resources/views/pages/admin/show.blade.php',
-        '/stubs/make/views/edit.stub' => 'resources/views/pages/admin/edit.blade.php',
-        '/stubs/make/views/delete.stub' => 'resources/views/pages/admin/delete.blade.php',
-        '/stubs/make/views/index.stub' => 'resources/views/pages/client/index.blade.php',
-        '/stubs/make/views/show.stub' => 'resources/views/pages/client/show.blade.php',
-        '/stubs/make/views/edit.stub' => 'resources/views/pages/client/edit.blade.php',
-        '/stubs/make/views/delete.stub' => 'resources/views/pages/client/delete.blade.php',
+        '/stubs/make/views/admin/index.stub' => 'resources/views/pages/admin/index.blade.php',
+        '/stubs/make/views/admin/show.stub' => 'resources/views/pages/admin/show.blade.php',
+        '/stubs/make/views/admin/edit.stub' => 'resources/views/pages/admin/edit.blade.php',
+        '/stubs/make/views/admin/delete.stub' => 'resources/views/pages/admin/delete.blade.php',
+        '/stubs/make/views/client/index.stub' => 'resources/views/pages/client/index.blade.php',
+        '/stubs/make/views/client/show.stub' => 'resources/views/pages/client/show.blade.php',
     ];
 
     /**

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div>Delete page view...</div>
+<h1>Admin</h1>
+<div>Single page view...</div>
 @endsection
