@@ -1,6 +1,6 @@
 <?php
 
-namespace {{namespace}}Http\Controllers\Admin;
+namespace {{namespace}}Http\Controllers\Client;
 
 use Weerd\ApolloPages\Http\Controllers\ApolloPageController;
 
@@ -10,7 +10,7 @@ class PageController extends ApolloPageController
      * Specifies the controller type.
      * @var string
      */
-    public $type = 'admin';
+    public $type = 'client';
 
     /**
      * Create a new controller instance.
@@ -19,7 +19,7 @@ class PageController extends ApolloPageController
      */
     public function __construct()
     {
-        $this->middleware(['web', 'auth']);
+        $this->middleware(['web']);
     }
 
     /**

@@ -1,0 +1,5 @@
+@extends('layouts.app')
+
+@section('content')
+<div>Index page listing view...</div>
+@endsection

@@ -1,3 +1,4 @@
+
 // Admin Routes
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::get('{page}', 'PageController@show');
