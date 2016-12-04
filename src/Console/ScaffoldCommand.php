@@ -50,6 +50,16 @@ class ScaffoldCommand extends Command
      */
     public function handle()
     {
+        // Add the Admin directory in the Http/Controllers directory.
+        if (! is_dir(app_path('Http/Controllers/Admin'))) {
+            mkdir(app_path('Http/Controllers/Admin'), 0644, true);
+        }
+
+        // Add the Client directory in the Http/Controllers directory.
+        if (! is_dir(app_path('Http/Controllers/Client'))) {
+            mkdir(app_path('Http/Controllers/Client'), 0644, true);
+        }
+
     	// Add controller scaffold files.
     	foreach ($this->controllers as $stub => $controller) {
     		file_put_contents(
