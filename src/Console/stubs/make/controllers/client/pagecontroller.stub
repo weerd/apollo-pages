@@ -2,16 +2,10 @@
 
 namespace {{namespace}}Http\Controllers\Client;
 
-use Weerd\ApolloPages\Http\Controllers\ApolloPageController;
+use Illuminate\Http\Controller as BaseController;
 
-class PageController extends ApolloPageController
+class PageController extends BaseController
 {
-    /**
-     * Specifies the controller type.
-     * @var string
-     */
-    public $type = 'client';
-
     /**
      * Create a new controller instance.
      *
@@ -23,15 +17,25 @@ class PageController extends ApolloPageController
     }
 
     /**
-     * Display the specified admin page.
+     * Display a listing of the resource.
      *
-     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function index()
+    {
+        return 'the client index page';
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
         // return view('pages.admin.show', ['page' => $page]);
 
-        return 'showing admin view...';
+        return 'the client show page';
     }
 }
