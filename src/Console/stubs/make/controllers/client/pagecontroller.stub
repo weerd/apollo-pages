@@ -2,7 +2,7 @@
 
 namespace {{namespace}}Http\Controllers\Client;
 
-use Illuminate\Http\Controller as BaseController;
+use {{namespace}}Http\Controllers\Controller as BaseController;
 
 class PageController extends BaseController
 {
