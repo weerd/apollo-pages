@@ -36,6 +36,15 @@ To append the custom routes to your routes file and scaffold the pages controlle
 php artisan apollo:scaffold
 ```
 
+### Step 4: Migrate
+
+Next, run migration to add the pages table to your database:
+
+```shell
+php artisan migrate
+```
+
+
 _more to come..._
 
 
