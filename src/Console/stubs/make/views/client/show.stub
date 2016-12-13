@@ -1,5 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.client.master')
 
 @section('content')
-<div>Single page view...</div>
+
+    <h1>{{ $page->title }}</h1>
+
+    <div>{{ $page->body }}</div>
+
 @endsection

@@ -1,4 +1,9 @@
 
+/*
+| The following Page routes need to be placed at the very end of the
+| web route declarations file.
+*/
+
 // Admin Routes
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::resource('pages', 'PageController', ['as' => 'admin']);
@@ -6,6 +11,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
 
 // Client Routes
 Route::group(['namespace' => 'Client'], function () {
-    Route::get('{category}/{page}', 'PageController@show');
-    Route::get('{page}', 'PageController@show')->name('client.pages.show');
+    Route::get('{params?}', 'PageController@show')->where('params', '(.*)');
 });

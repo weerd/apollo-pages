@@ -3,6 +3,7 @@
 namespace {{namespace}}Http\Controllers\Client;
 
 use {{namespace}}Http\Controllers\Controller as BaseController;
+use Weerd\ApolloPages\Models\ApolloPage as Page;
 
 class PageController extends BaseController
 {
@@ -17,25 +18,15 @@ class PageController extends BaseController
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return 'the client index page';
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $path
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($path)
     {
-        // return view('pages.admin.show', ['page' => $page]);
+        $page = Page::where('path', '=', $path)->firstOrFail();
 
-        return 'the client show page';
+        return view('pages.client.show', ['page' => $page]);
     }
 }
