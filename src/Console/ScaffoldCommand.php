@@ -45,7 +45,6 @@ class ScaffoldCommand extends Command
         '/stubs/make/views/admin/index.stub' => 'resources/views/pages/admin/index.blade.php',
         '/stubs/make/views/admin/create.stub' => 'resources/views/pages/admin/create.blade.php',
         '/stubs/make/views/admin/edit.stub' => 'resources/views/pages/admin/edit.blade.php',
-        '/stubs/make/views/admin/delete.stub' => 'resources/views/pages/admin/delete.blade.php',
 
         '/stubs/make/views/client/show.stub' => 'resources/views/pages/client/show.blade.php',
     ];
