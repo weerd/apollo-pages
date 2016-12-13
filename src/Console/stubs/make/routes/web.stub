@@ -11,5 +11,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
 
 // Client Routes
 Route::group(['namespace' => 'Client'], function () {
-    Route::get('{params?}', 'PageController@show')->where('params', '(.*)');
+    Route::get('{params?}', 'PageController@show')->where('params', '(.*)')->name('client.pages.show');
 });

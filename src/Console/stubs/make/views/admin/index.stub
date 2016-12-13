@@ -11,6 +11,7 @@
             @foreach ($pages as $page)
                 <li>{{ $page->title }}
                     <a href="{{ route('admin.pages.edit', $page->id) }}">Edit</a>
+                    <a href="{{ route('client.pages.show', $page->path) }}">View</a>
                     <form method="POST" action="{{ route('admin.pages.destroy', $page->id) }}">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
