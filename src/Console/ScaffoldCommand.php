@@ -39,11 +39,13 @@ class ScaffoldCommand extends Command
      * @var array
      */
     protected $views = [
+        '/stubs/make/views/admin/master.stub' => 'resources/views/layouts/admin/master.blade.php',
+        '/stubs/make/views/client/master.stub' => 'resources/views/layouts/client/master.blade.php',
+
         '/stubs/make/views/admin/index.stub' => 'resources/views/pages/admin/index.blade.php',
-        '/stubs/make/views/admin/show.stub' => 'resources/views/pages/admin/show.blade.php',
+        '/stubs/make/views/admin/create.stub' => 'resources/views/pages/admin/create.blade.php',
         '/stubs/make/views/admin/edit.stub' => 'resources/views/pages/admin/edit.blade.php',
-        '/stubs/make/views/admin/delete.stub' => 'resources/views/pages/admin/delete.blade.php',
-        '/stubs/make/views/client/index.stub' => 'resources/views/pages/client/index.blade.php',
+
         '/stubs/make/views/client/show.stub' => 'resources/views/pages/client/show.blade.php',
     ];
 
@@ -108,6 +110,8 @@ class ScaffoldCommand extends Command
         $directories = [
             'resources/views/pages/admin',
             'resources/views/pages/client',
+            'resources/views/layouts/admin',
+            'resources/views/layouts/client',
         ];
 
         // Make the view directories.

@@ -2,16 +2,13 @@
 
 namespace {{namespace}}Http\Controllers\Admin;
 
-use Weerd\ApolloPages\Http\Controllers\ApolloPageController;
+use {{namespace}}Http\Controllers\Controller as BaseController;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Weerd\ApolloPages\Models\ApolloPage as Page;
 
-class PageController extends ApolloPageController
+class PageController extends BaseController
 {
-    /**
-     * Specifies the controller type.
-     * @var string
-     */
-    public $type = 'admin';
-
     /**
      * Create a new controller instance.
      *
@@ -23,15 +20,102 @@ class PageController extends ApolloPageController
     }
 
     /**
-     * Display the specified admin page.
+     * Display a listing of the resource.
      *
-     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function index()
     {
-        // return view('pages.admin.show', ['page' => $page]);
+        return view('pages.admin.index', ['pages' => Page::all()]);
+    }
 
-        return 'showing admin view...';
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('pages.admin.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $page = Page::create([
+            'title' => $request->input('title'),
+            'slug' => $request->input('slug'),
+            'path' => $request->input('path'),
+            'tier' => $request->input('tier'),
+            'body' => $request->input('body'),
+        ]);
+
+        return redirect()->route('admin.pages.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        // @TODO: maybe use this route to show a preview of a page?
+
+        $page = Page::findOrFail($id);
+
+        return redirect()->route('admin.pages.edit', $id);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view('pages.admin.edit', ['page' => Page::find($id)]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $page = Page::find($id);
+
+        $page->fill($request->all())->save();
+
+        return redirect()->route('admin.pages.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $page = Page::findOrFail($id);
+
+        $deletion = $page->destroy($id);
+
+        if (! $deletion) {
+            throw new ModelNotFoundException;
+        }
+
+        return redirect()->route('admin.pages.index');
     }
 }

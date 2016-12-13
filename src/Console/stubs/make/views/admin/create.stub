@@ -1,0 +1,43 @@
+@extends('layouts.admin.master')
+
+@section('content')
+
+    <h1>Admin: Create Page</h1>
+
+    <form method="POST" action="{{ route('admin.pages.store') }}">
+        {{ csrf_field() }}
+
+        <div>
+            <label>Title:</label>
+            <input type="text" name="title" autofocus />
+        </div>
+
+        <div>
+            <label>Slug:</label>
+            <input type="text" name="slug" />
+        </div>
+
+        <div>
+            <label>Path:</label>
+            <input type="text" name="path" />
+        </div>
+
+        <div>
+            <label>Tier:</label>
+            <input type="text" name="tier" />
+        </div>
+
+        <div>
+            <label>Body:</label>
+            <textarea name="body" rows="10" cols="50">
+
+            </textarea>
+        </div>
+
+        <div>
+            <input type="submit" value="Submit">
+            <a href="{{ route('admin.pages.index') }}">Cancel</a>
+        </div>
+    </form>
+
+@endsection

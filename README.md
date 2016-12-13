@@ -36,4 +36,29 @@ To append the custom routes to your routes file and scaffold the pages controlle
 php artisan apollo:scaffold
 ```
 
+### Step 4: Migrate
+
+Next, run migration to add the pages table to your database:
+
+```shell
+php artisan migrate
+```
+
+
 _more to come..._
+
+
+
+## Additional Notes
+
+This package assumes the following directory structure for views with two _master_ page templates:
+
+```
+/resources/views/layouts/admin/master.blade.php
+
+/resources/views/layouts/client/master.blade.php
+```
+
+These can be freely changed or unified into a single _master_ page template, but you will need to update the references to the master layout templates in the views inside the `/reources/views/pages/admin` and `/reources/views/pages/client` directories.
+
+
