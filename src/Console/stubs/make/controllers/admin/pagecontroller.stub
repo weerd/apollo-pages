@@ -47,6 +47,14 @@ class PageController extends BaseController
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'slug' => 'required',
+            'path' => 'required|unique:pages',
+            'tier' => 'required|digits:1',
+            'parent_id' => '',
+        ]);
+
         $page = Page::create([
             'title' => $request->input('title'),
             'slug' => $request->input('slug'),
