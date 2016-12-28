@@ -34,9 +34,7 @@
 
         <div>
             <label>Body:</label>
-            <textarea name="body" value="{{ old('body') }}" rows="10" cols="50">
-
-            </textarea>
+            <textarea name="body" value="{{ old('body') }}" rows="10" cols="50"></textarea>
         </div>
 
         <div>
