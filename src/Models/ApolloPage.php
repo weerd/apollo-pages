@@ -55,7 +55,7 @@ class ApolloPage extends Model
      */
     public static function assignPathAttribute($request)
     {
-        $parent = static::where('parent_id', $request->input('parent_id'))->first();
+        $parent = static::where('id', $request->input('parent_id'))->first();
 
         if ($parent) {
             return $parent->path.'/'.$request->input('slug');
