@@ -23,30 +23,44 @@ class ScaffoldCommand extends Command
      */
     protected $description = 'Scaffold the necessary files to enable pages';
 
+    /**
+     * The directories that need to be created.
+     *
+     * @var array
+     */
+    protected $directories = [
+        'Http/Controllers/Admin' => 'controller',
+        'Http/Controllers/Client' => 'controller',
+        'views/pages/admin' => 'view',
+        'views/pages/client' => 'view',
+        'views/layouts/admin' => 'view',
+        'views/layouts/client' => 'view',
+    ];
+
 	/**
-	 * List of controller files to scaffold.
+	 * The controllers that need to be exported.
 	 *
 	 * @var array
 	 */
 	protected $controllers = [
-    	'/stubs/make/controllers/admin/pagecontroller.stub' => 'Http/Controllers/Admin/PageController.php',
-    	'/stubs/make/controllers/client/pagecontroller.stub' => 'Http/Controllers/Client/PageController.php',
+    	'controllers/admin/pagecontroller.stub' => 'Http/Controllers/Admin/PageController.php',
+    	'controllers/client/pagecontroller.stub' => 'Http/Controllers/Client/PageController.php',
     ];
 
     /**
-     * List of view files to scaffold.
+     * The views that need to be exported.
      *
      * @var array
      */
     protected $views = [
-        '/stubs/make/views/admin/master.stub' => 'resources/views/layouts/admin/master.blade.php',
-        '/stubs/make/views/client/master.stub' => 'resources/views/layouts/client/master.blade.php',
+        'views/admin/master.stub' => 'views/layouts/admin/master.blade.php',
+        'views/client/master.stub' => 'views/layouts/client/master.blade.php',
 
-        '/stubs/make/views/admin/index.stub' => 'resources/views/pages/admin/index.blade.php',
-        '/stubs/make/views/admin/create.stub' => 'resources/views/pages/admin/create.blade.php',
-        '/stubs/make/views/admin/edit.stub' => 'resources/views/pages/admin/edit.blade.php',
+        'views/admin/index.stub' => 'views/pages/admin/index.blade.php',
+        'views/admin/create.stub' => 'views/pages/admin/create.blade.php',
+        'views/admin/edit.stub' => 'views/pages/admin/edit.blade.php',
 
-        '/stubs/make/views/client/show.stub' => 'resources/views/pages/client/show.blade.php',
+        'views/client/show.stub' => 'views/pages/client/show.blade.php',
     ];
 
     /**
@@ -66,71 +80,102 @@ class ScaffoldCommand extends Command
      */
     public function handle()
     {
-        $this->addControllers();
+        $this->createDirectories();
 
-        $this->addViews();
+        $this->exportControllers();
+
+        $this->exportViews();
 
         $this->appendRoutes();
     }
 
     /**
-     * Add the specified controllers.
+     * Create the directories for the files.
      *
      * @return void
+     *
+     * @todo enable using $type to allow only creating specific directory types (e.g., just views).
      */
-    protected function addControllers()
+    protected function createDirectories()
     {
-        $directories = [
-            'Http/Controllers/Admin',
-            'Http/Controllers/Client',
-        ];
+        foreach ($this->directories as $directory => $type) {
+            $path = $this->getDirectoryPathByType($type, $directory);
 
-        // Make the controller directories.
-        foreach ($directories as $directory) {
-            if (! is_dir(app_path($directory))) {
-                mkdir(app_path($directory), 0644, true);
+            if (! is_dir($path)) {
+                mkdir($path, 0755, true);
             }
         }
 
-        // Add controller scaffold files.
-        foreach ($this->controllers as $stub => $controller) {
-            file_put_contents(app_path($controller), $this->compileNamespaceToStub($stub));
-        }
-
-        $this->info('ApolloPages controllers added successfully.');
+        $this->info('ApolloPages directories created.');
     }
 
     /**
-     * Add the specified views.
+     * Get the directory path for a specified directory by type.
+     *
+     * @param  string $type
+     * @param  string $directory
+     * @return string
+     */
+    protected function getDirectoryPathByType($type, $directory)
+    {
+        switch($type) {
+            case 'controller':
+                return app_path($directory);
+
+            case 'view':
+                return resource_path($directory);
+
+            default:
+                return base_path($directory);
+        }
+    }
+
+    /**
+     * Export the page controllers.
      *
      * @return void
      */
-    protected function addViews()
+    protected function exportControllers()
     {
-        $directories = [
-            'resources/views/pages/admin',
-            'resources/views/pages/client',
-            'resources/views/layouts/admin',
-            'resources/views/layouts/client',
-        ];
-
-        // Make the view directories.
-        foreach ($directories as $directory) {
-            if (! is_dir(base_path($directory))) {
-                mkdir(base_path($directory), 0644, true);
-            }
+        foreach ($this->controllers as $stub => $file) {
+            file_put_contents(
+                $this->getDirectoryPathByType('controller', $file),
+                $this->compileNamespaceToStub($stub)
+            );
         }
 
-        // Add view scaffold files.
-        foreach ($this->views as $stub => $view) {
-            file_put_contents(base_path($view), file_get_contents(__DIR__.$stub));
-        }
-
-        $this->info('ApolloPages views added successfully.');
+        $this->info('ApolloPages controllers exported successfully.');
     }
 
     /**
-     * Append the specified routes to the project routes.
+     * Export the page views.
+     *
+     * @return void
+     */
+    protected function exportViews()
+    {
+        foreach ($this->views as $stub => $file) {
+            $path = $this->getDirectoryPathByType('view', $file);
+
+            if (file_exists($path)) {
+                if (! $this->confirm("The [{$file}] view already exists. Do you want to replace it?")) {
+                    continue;
+                }
+
+                $this->warn("Replacing [{$file}] with ApolloPages version.");
+            }
+
+            copy(
+                __DIR__.'/stubs/make/'.$stub,
+                $path
+            );
+        }
+
+        $this->info('ApolloPages views exported successfully.');
+    }
+
+    /**
+     * Append the page routes to the project web routes.
      *
      * @return void
      */
@@ -147,7 +192,8 @@ class ScaffoldCommand extends Command
 
 	/**
 	 * Compile the stub with the proper namespace.
-	 *
+     *
+     * @param  string $path
 	 * @return string
 	 */
     protected function compileNamespaceToStub($path)
@@ -155,7 +201,7 @@ class ScaffoldCommand extends Command
         return str_replace(
             '{{namespace}}',
             $this->getAppNamespace(),
-            file_get_contents(__DIR__.$path)
+            file_get_contents(__DIR__.'/stubs/make/'.$path)
         );
     }
 }
