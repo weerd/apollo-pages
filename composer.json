@@ -1,7 +1,7 @@
 {
   "name": "weerd/apollo-pages",
   "description": "Laravel package to provide static page CMS.",
-  "keywords": ["pages", "cms"],
+  "keywords": ["pages", "cms", "laravel"],
   "license": "MIT",
   "authors": [
     {
@@ -16,10 +16,10 @@
     }
   },
   "require": {
-    "illuminate/database": "^5.3",
-    "illuminate/support": "^5.3",
-    "illuminate/routing": "^5.3",
-    "illuminate/console": "^5.3"
+    "illuminate/database": "^5.4",
+    "illuminate/support": "^5.4",
+    "illuminate/routing": "^5.4",
+    "illuminate/console": "^5.4"
   },
   "autoload-dev": {
     "classmap": [
