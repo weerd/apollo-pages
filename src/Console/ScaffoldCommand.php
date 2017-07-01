@@ -90,6 +90,37 @@ class ScaffoldCommand extends Command
     }
 
     /**
+     * Append the page routes to the project web routes.
+     *
+     * @return void
+     */
+    protected function appendRoutes()
+    {
+        file_put_contents(
+            base_path('routes/web.php'),
+            file_get_contents(__DIR__.'/stubs/make/routes/web.stub'),
+            FILE_APPEND
+        );
+
+        $this->info('ApolloPages routes appended successfully.');
+    }
+
+    /**
+     * Compile the stub with the proper namespace.
+     *
+     * @param  string $path
+     * @return string
+     */
+    protected function compileNamespaceToStub($path)
+    {
+        return str_replace(
+            '{{namespace}}',
+            $this->getAppNamespace(),
+            file_get_contents(__DIR__.'/stubs/make/'.$path)
+        );
+    }
+
+    /**
      * Create the directories for the files.
      *
      * @return void
@@ -107,27 +138,6 @@ class ScaffoldCommand extends Command
         }
 
         $this->info('ApolloPages directories created.');
-    }
-
-    /**
-     * Get the directory path for a specified directory by type.
-     *
-     * @param  string $type
-     * @param  string $directory
-     * @return string
-     */
-    protected function getDirectoryPathByType($type, $directory)
-    {
-        switch($type) {
-            case 'controller':
-                return app_path($directory);
-
-            case 'view':
-                return resource_path($directory);
-
-            default:
-                return base_path($directory);
-        }
     }
 
     /**
@@ -175,33 +185,23 @@ class ScaffoldCommand extends Command
     }
 
     /**
-     * Append the page routes to the project web routes.
+     * Get the directory path for a specified directory by type.
      *
-     * @return void
+     * @param  string $type
+     * @param  string $directory
+     * @return string
      */
-    protected function appendRoutes()
+    protected function getDirectoryPathByType($type, $directory)
     {
-        file_put_contents(
-            base_path('routes/web.php'),
-            file_get_contents(__DIR__.'/stubs/make/routes/web.stub'),
-            FILE_APPEND
-        );
+        switch($type) {
+            case 'controller':
+                return app_path($directory);
 
-        $this->info('ApolloPages routes appended successfully.');
-    }
+            case 'view':
+                return resource_path($directory);
 
-	/**
-	 * Compile the stub with the proper namespace.
-     *
-     * @param  string $path
-	 * @return string
-	 */
-    protected function compileNamespaceToStub($path)
-    {
-        return str_replace(
-            '{{namespace}}',
-            $this->getAppNamespace(),
-            file_get_contents(__DIR__.'/stubs/make/'.$path)
-        );
+            default:
+                return base_path($directory);
+        }
     }
 }
