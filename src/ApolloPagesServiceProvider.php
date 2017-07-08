@@ -13,13 +13,22 @@ class ApolloPagesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'apollo-pages');
+
         if ($this->app->runningInConsole()) {
+            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+            $this->publishes([
+                __DIR__.'/../resources/views' => resource_path('views/vendor/apollo-pages'),
+            ], 'apollo-pages-views');
+
             $this->commands([
                 Console\ScaffoldCommand::class,
             ]);
         }
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
