@@ -16,27 +16,31 @@ composer require ... # the project is still in development and will be on packag
 
 ### Step 2: Service Provider
 
-Within your Laravel project, open `config/app.php` and, within the `providers` array, append:
+Within your Laravel project, open `config/app.php` and, at then end of the `providers` array, append:
 
 ```php
 'providers' => [
     // ...
+
+    /*
+     * Application Service Providers...
+     */
+    App\Providers\AppServiceProvider::class,
+    App\Providers\AuthServiceProvider::class,
+    // App\Providers\BroadcastServiceProvider::class,
+    App\Providers\EventServiceProvider::class,
+    App\Providers\RouteServiceProvider::class,
+
+    /*
+     * Post-Application Package Service Providers...
+     */
     Weerd\ApolloPages\ApolloPagesServiceProvider::class,
-    //...
 ],
 ```
 
-This will bootstrap the package into Laravel.
+This will bootstrap the package into Laravel. To have `ApolloPages` work correctly and behave as a catch all for routes specifiying custom pages, the routes for the package need to be considered _after_ the main application routes defined in `/routes/web.php`. For this behavior, the `ApolloPagesServiceProvider` needs to be defined at the very end of the `providers` array.
 
-### Step 3: Artisan Command
-
-To append the custom routes to your routes file and scaffold the pages controllers, run the following artisan command:
-
-```shell
-php artisan apollo:scaffold
-```
-
-### Step 4: Migrate
+### Step 3: Migrate
 
 Next, run migration to add the pages table to your database:
 
@@ -44,6 +48,12 @@ Next, run migration to add the pages table to your database:
 php artisan migrate
 ```
 
+
+_more to come..._
+
+
+
+## Customization
 
 _more to come..._
 
