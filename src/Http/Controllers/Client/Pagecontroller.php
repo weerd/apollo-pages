@@ -2,8 +2,8 @@
 
 namespace Weerd\ApolloPages\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller as BaseController;
 use Weerd\ApolloPages\Models\ApolloPage as Page;
+use Weerd\ApolloPages\Http\Controllers\Controller as BaseController;
 
 class PageController extends BaseController
 {
@@ -27,6 +27,6 @@ class PageController extends BaseController
     {
         $page = Page::where('path', '=', $path)->firstOrFail();
 
-        return view('pages.client.show', ['page' => $page]);
+        return view('apollo-pages::pages.client.show', ['page' => $page]);
     }
 }
