@@ -1,4 +1,4 @@
-@extends('layouts.client.master')
+@extends('apollo-pages::layouts.client.master')
 
 @section('content')
 
