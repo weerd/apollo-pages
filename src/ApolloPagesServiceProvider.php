@@ -24,11 +24,10 @@ class ApolloPagesServiceProvider extends ServiceProvider
                 __DIR__.'/../resources/views' => resource_path('views/vendor/apollo-pages'),
             ], 'apollo-pages-views');
 
-            $this->commands([
-                Console\ScaffoldCommand::class,
-            ]);
+            // $this->commands([
+            //     Console\ScaffoldCommand::class,
+            // ]);
         }
-
     }
 
     /**
@@ -38,6 +37,7 @@ class ApolloPagesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->make(Http\Controllers\Admin\PageController::class);
+        $this->app->make(Http\Controllers\Client\PageController::class);
     }
 }
