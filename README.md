@@ -64,7 +64,7 @@ Alternatively, you can publish just the view files to your project by running:
 $ php artisan vendor:publish --tag="apollo-pages-views"
 ```
 
-As a third option, as of Laravel 5.5 you can use the provider prompt to select which provider or tag's files to publish by running:
+For a third option, as of Laravel 5.5 you can use the provider prompt to select which provider or tag's files to publish by running:
 
 ```shell
 $ php artisan vendor:publish
