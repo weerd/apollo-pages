@@ -13,13 +13,17 @@ class ApolloPagesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                Console\ScaffoldCommand::class,
-            ]);
-        }
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'apollo-pages');
+
+        if ($this->app->runningInConsole()) {
+            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+            $this->publishes([
+                __DIR__.'/../resources/views' => resource_path('views/vendor/apollo-pages'),
+            ], 'apollo-pages-views');
+        }
     }
 
     /**
@@ -29,6 +33,7 @@ class ApolloPagesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->make(Http\Controllers\Admin\PageController::class);
+        $this->app->make(Http\Controllers\Client\PageController::class);
     }
 }

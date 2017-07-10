@@ -1,11 +1,11 @@
 <?php
 
-namespace {{namespace}}Http\Controllers\Admin;
+namespace Weerd\ApolloPages\Http\Controllers\Admin;
 
-use {{namespace}}Http\Controllers\Controller as BaseController;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Weerd\ApolloPages\Models\ApolloPage as Page;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Weerd\ApolloPages\Http\Controllers\Controller as BaseController;
 
 class PageController extends BaseController
 {
@@ -26,7 +26,7 @@ class PageController extends BaseController
      */
     public function index()
     {
-        return view('pages.admin.index', ['pages' => Page::all()]);
+        return view('apollo-pages::pages.admin.index', ['pages' => Page::all()]);
     }
 
     /**
@@ -36,7 +36,7 @@ class PageController extends BaseController
      */
     public function create()
     {
-        return view('pages.admin.create');
+        return view('apollo-pages::pages.admin.create');
     }
 
     /**
@@ -92,7 +92,7 @@ class PageController extends BaseController
      */
     public function edit($id)
     {
-        return view('pages.admin.edit', ['page' => Page::find($id)]);
+        return view('apollo-pages::pages.admin.edit', ['page' => Page::find($id)]);
     }
 
     /**
