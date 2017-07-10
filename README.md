@@ -16,7 +16,7 @@ composer require ... # the project is still in development and will be on packag
 
 ### Step 2: Service Provider
 
-Within your Laravel project, open `config/app.php` and, at then end of the `providers` array, append:
+Within your Laravel project, open `config/app.php` and, at the end of the `providers` array, append:
 
 ```php
 'providers' => [
@@ -25,11 +25,7 @@ Within your Laravel project, open `config/app.php` and, at then end of the `prov
     /*
      * Application Service Providers...
      */
-    App\Providers\AppServiceProvider::class,
-    App\Providers\AuthServiceProvider::class,
-    // App\Providers\BroadcastServiceProvider::class,
-    App\Providers\EventServiceProvider::class,
-    App\Providers\RouteServiceProvider::class,
+    // ...
 
     /*
      * Post-Application Package Service Providers...
@@ -42,7 +38,7 @@ This will bootstrap the package into Laravel. To have `ApolloPages` work correct
 
 ### Step 3: Migrate
 
-Next, run migration to add the pages table to your database:
+Next, run the migration to add the pages table to your database:
 
 ```shell
 php artisan migrate
@@ -56,19 +52,3 @@ _more to come..._
 ## Customization
 
 _more to come..._
-
-
-
-## Additional Notes
-
-This package assumes the following directory structure for views with two _master_ page templates:
-
-```
-/resources/views/layouts/admin/master.blade.php
-
-/resources/views/layouts/client/master.blade.php
-```
-
-These can be freely changed or unified into a single _master_ page template, but you will need to update the references to the master layout templates in the views inside the `/reources/views/pages/admin` and `/reources/views/pages/client` directories.
-
-
