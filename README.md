@@ -1,8 +1,8 @@
-# Apollo Pages
+<h1 align="center">Apollo Pages</h1>
 
 Apollo Pages is a package for Laravel 5 that provides scaffolding and functionality for generating static pages in a CMS-like nature.
 
-_more to come..._
+
 
 ## Installation
 
