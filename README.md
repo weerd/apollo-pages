@@ -1,8 +1,8 @@
-# Apollo Pages
+<h1 align="center">Apollo Pages</h1>
 
 Apollo Pages is a package for Laravel 5 that provides scaffolding and functionality for generating static pages in a CMS-like nature.
 
-_more to come..._
+
 
 ## Installation
 
@@ -45,10 +45,30 @@ php artisan migrate
 ```
 
 
-_more to come..._
-
-
 
 ## Customization
 
-_more to come..._
+### Publish Vendor Files
+
+The `ApolloPages` package makes use of the `artisan publish` command to allow user's to publish some of this package's files to their project so that they can easily be overridden and customized by the package user.
+
+You can publish all available publishable package files to your project by running:
+
+```shell
+$ php artisan vendor:publish --provider="Weerd\ApolloPages\ApolloPagesServiceProvider"
+```
+
+Alternatively, you can publish just the view files to your project by running:
+
+```shell
+$ php artisan vendor:publish --tag="apollo-pages-views"
+```
+
+For a third option, as of Laravel 5.5 you can use the provider prompt to select which provider or tag's files to publish by running:
+
+```shell
+$ php artisan vendor:publish
+```
+
+And then follow the prompt.
+
