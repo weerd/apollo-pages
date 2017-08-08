@@ -14,7 +14,7 @@ Apollo Pages is a package for Laravel 5 that provides scaffolding and functional
 From the command line, run:
 
 ```shell
-composer require ... # the project is still in development and will be on packagist.org soon
+composer require weerd/apollo-pages
 ```
 
 ### Step 2: Service Provider
@@ -41,7 +41,7 @@ This will bootstrap the package into Laravel. To have `ApolloPages` work correct
 
 ### Step 3: Migrate
 
-Next, run the migration to add the pages table to your database:
+Next, run the migration to add the `pages` table to your database:
 
 ```shell
 php artisan migrate
