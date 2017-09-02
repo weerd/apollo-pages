@@ -9,7 +9,8 @@
     @if ($pages->count())
         <ul>
             @foreach ($pages as $page)
-                <li>{{ $page->title }}
+                <li>
+                    {{ $page->title }}
                     <a href="{{ route('admin.pages.edit', $page->id) }}">Edit</a>
                     <a href="{{ route('client.pages.show', $page->path) }}" target="_blank">View</a>
                     <form method="POST" action="{{ route('admin.pages.destroy', $page->id) }}">

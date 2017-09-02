@@ -119,13 +119,7 @@ class PageController extends BaseController
      */
     public function destroy($id)
     {
-        $page = Page::findOrFail($id);
-
-        $deletion = $page->destroy($id);
-
-        if (! $deletion) {
-            throw new ModelNotFoundException;
-        }
+        $page = Page::findOrFail($id)->destroy($id);
 
         return redirect()->route('admin.pages.index');
     }

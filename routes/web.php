@@ -16,7 +16,7 @@ Route::get('apollo', function() {
 });
 
 // Admin Routes
-Route::group(['namespace' => 'Weerd\ApolloPages\Http\Controllers\Admin', 'prefix' => 'admin'], function() {
+Route::group(['namespace' => 'Weerd\ApolloPages\Http\Controllers\Admin', 'prefix' => 'admin'], function () {
     Route::resource('pages', 'PageController', ['as' => 'admin']);
 });
 
