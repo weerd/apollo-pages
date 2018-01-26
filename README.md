@@ -1,5 +1,11 @@
 <h1 align="center">Apollo Pages</h1>
 
+<p align="center">
+<a href="https://travis-ci.org/weerd/apollo-pages"><img src="https://travis-ci.org/weerd/apollo-pages.svg?branch=master" alt="Build Status"></a>
+<a href="https://packagist.org/packages/weerd/apollo-pages"><img src="https://poser.pugx.org/weerd/apollo-pages/v/stable.svg?format=flat" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/weerd/apollo-pages"><img src="https://poser.pugx.org/weerd/apollo-pages/license.svg?format=flat" alt="License"></a>
+</p>
+
 
 ## Introduction
 
