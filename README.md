@@ -1,4 +1,6 @@
 <h1 align="center">Apollo Pages</h1>
+[![License](https://poser.pugx.org/weerd/apollo-pages/license?format=flat-square)](https://packagist.org/packages/weerd/apollo-pages)
+[![Latest Stable Version](https://poser.pugx.org/weerd/apollo-pages/v/stable?format=flat-square)](https://packagist.org/packages/weerd/apollo-pages)
 
 
 ## Introduction
