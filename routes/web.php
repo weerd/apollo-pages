@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Successful package registration endpoint check
-Route::get('apollo', function() {
+Route::get('apollo', function () {
     return ['status' => 'Apollo Pages routes are working!'];
 });
 
 // Admin Routes
-Route::group(['namespace' => 'Weerd\ApolloPages\Http\Controllers\Admin', 'prefix' => 'admin'], function() {
+Route::group(['namespace' => 'Weerd\ApolloPages\Http\Controllers\Admin', 'prefix' => 'admin'], function () {
     Route::resource('pages', 'PageController', ['as' => 'admin']);
 });
 
