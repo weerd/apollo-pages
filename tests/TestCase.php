@@ -32,10 +32,6 @@ abstract class TestCase extends BaseTestCase
             'database' => ':memory:',
             'prefix'   => '',
         ]);
-
-        $app['router']->get('example-test-page', function () {
-            return ['status' => 'poop'];
-        });
     }
 
     /**
