@@ -1,10 +1,11 @@
 <?php
 
-namespace Weerd\ApolloPages\Tests;
+namespace Weerd\ApolloPages\Tests\Feature;
 
+use Illuminate\Foundation\Auth\User;
+use Weerd\ApolloPages\Tests\TestCase;
 use Illuminate\Support\Facades\Artisan;
 use Weerd\ApolloPages\Models\ApolloPage as Page;
-use Illuminate\Foundation\Console\RouteListCommand;
 
 class ViewPagesTest extends TestCase
 {
@@ -54,5 +55,67 @@ class ViewPagesTest extends TestCase
         // Redirects to /login if not authenticated, but page does not
         // exist in test environment.
         $response->assertStatus(500);
+    }
+
+    /** @test */
+    public function authenticated_user_can_view_admin_page_listing()
+    {
+        $admin = new User;
+
+        $response = $this->actingAs($admin)->get('admin/pages');
+
+        $response->assertStatus(200);
+        $response->assertSee('Page List');
+    }
+
+    /** @test */
+    public function authenticated_user_can_view_admin_create_page_form()
+    {
+        $admin = new User;
+
+        $response = $this->actingAs($admin)->get('admin/pages/create');
+
+        $response->assertStatus(200);
+        $response->assertSee('Create Page');
+    }
+
+    /** @test */
+    public function authenticated_user_can_view_admin_edit_page_form()
+    {
+        $admin = new User;
+
+        $pageTitle = 'Example Test Page';
+
+        $page = factory(Page::class)->create([
+            'title' => $pageTitle,
+            'slug' => str_slug($pageTitle),
+            'path' => str_slug($pageTitle),
+        ]);
+
+        $response = $this->actingAs($admin)->get('admin/pages/'.$page->id.'/edit');
+
+        $response->assertStatus(200);
+        $response->assertSee('Update Page');
+    }
+
+    /** @test */
+    public function authenticated_user_viewing_admin_page_is_redirected_to_admin_edit_page_form()
+    {
+        $this->followingRedirects();
+
+        $admin = new User;
+
+        $pageTitle = 'Example Test Page';
+
+        $page = factory(Page::class)->create([
+            'title' => $pageTitle,
+            'slug' => str_slug($pageTitle),
+            'path' => str_slug($pageTitle),
+        ]);
+
+        $response = $this->actingAs($admin)->get('admin/pages/'.$page->id);
+
+        $response->assertStatus(200);
+        $response->assertSee('Update Page');
     }
 }
