@@ -18,7 +18,7 @@ $factory->define(ApolloPage::class, function (Faker $faker) {
         'tier' => 1,
         'parent_id' => null,
         'title' => ucfirst($pageTitle),
-        'body_raw' => null,
         'body' => null,
+        'body_markup' => null,
     ];
 });

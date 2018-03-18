@@ -20,8 +20,8 @@ class CreatePagesTable extends Migration
             $table->integer('tier');
             $table->integer('parent_id')->nullable();
             $table->string('title');
-            $table->text('body_raw')->nullable();
             $table->text('body')->nullable();
+            $table->text('body_markup')->nullable();
             $table->timestamps();
         });
     }
