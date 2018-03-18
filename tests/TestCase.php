@@ -2,7 +2,6 @@
 
 namespace Weerd\ApolloPages\Tests;
 
-// use Illuminate\Database\Capsule\Manager as DB;
 use Orchestra\Testbench\Exceptions\Handler;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Orchestra\Testbench\TestCase as BaseTestCase;
