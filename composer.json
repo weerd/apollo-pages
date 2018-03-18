@@ -3,6 +3,10 @@
   "description": "Laravel package to provide static page CMS.",
   "keywords": ["pages", "cms", "laravel"],
   "license": "MIT",
+  "support": {
+    "issues": "https://github.com/weerd/apollo-pages/issues",
+    "source": "https://github.com/weerd/apollo-pages"
+  },
   "authors": [
     {
       "name": "Diego Lorenzo",
