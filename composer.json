@@ -10,12 +10,13 @@
     }
   ],
   "require": {
-    "illuminate/console": "~5.4",
-    "illuminate/database": "~5.4",
-    "illuminate/routing": "~5.4",
-    "illuminate/support": "~5.4"
+    "illuminate/console": "~5.5",
+    "illuminate/database": "~5.5",
+    "illuminate/routing": "~5.5",
+    "illuminate/support": "~5.5"
   },
   "require-dev": {
+    "fzaninotto/faker": "^1.7",
     "orchestra/testbench": "~3.0",
     "phpunit/phpunit": "~6.0"
   },
@@ -29,5 +30,9 @@
       "Weerd\\ApolloPages\\Tests\\": "tests/"
     }
   },
-  "minimum-stability": "dev"
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }

@@ -3,6 +3,8 @@
 namespace Weerd\ApolloPages\Tests;
 
 // use Illuminate\Database\Capsule\Manager as DB;
+use Orchestra\Testbench\Exceptions\Handler;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Weerd\ApolloPages\ApolloPagesServiceProvider;
 
@@ -16,6 +18,8 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 
         $this->artisan('migrate', ['--database' => 'testing']);
+
+        $this->withFactories(__DIR__.'/../database/factories');
     }
 
     /**
@@ -43,5 +47,27 @@ abstract class TestCase extends BaseTestCase
     protected function getPackageProviders($app)
     {
         return [ApolloPagesServiceProvider::class];
+    }
+
+    /**
+     * Disable Laravel's exception handling when needed.
+     *
+     * @return StdClass
+     */
+    protected function disableExceptionHandling()
+    {
+        $this->app->instance(ExceptionHandler::class, new class extends Handler {
+            public function __construct() {}
+
+            public function report(\Exception $exception)
+            {
+                // no-op
+            }
+
+            public function render($request, \Exception $exception)
+            {
+                throw $exception;
+            }
+        });
     }
 }
