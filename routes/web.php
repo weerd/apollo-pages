@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Successful package registration endpoint check
-Route::get('apollo', function () {
+Route::get('status/apollo', function () {
     return ['status' => 'Apollo Pages routes are working!'];
 });
 

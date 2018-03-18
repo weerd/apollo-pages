@@ -1,39 +1,72 @@
 <?php
 
-use Illuminate\Database\Capsule\Manager as DB;
+namespace Weerd\ApolloPages\Tests;
 
-abstract class TestCase extends PHPUnit_Framework_TestCase
+use Orchestra\Testbench\Exceptions\Handler;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Orchestra\Testbench\TestCase as BaseTestCase;
+use Weerd\ApolloPages\ApolloPagesServiceProvider;
+
+abstract class TestCase extends BaseTestCase
 {
     /**
-     * Setup the test case data persistance layer.
+     * Setup the test environment.
      */
     public function setUp()
     {
-        $this->setUpDatabase();
-        $this->migrateTables();
+        parent::setUp();
+
+        $this->artisan('migrate', ['--database' => 'testing']);
+
+        $this->withFactories(__DIR__.'/../database/factories');
     }
 
     /**
-     * Setup the in-memory database.
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
      */
-    protected function setUpDatabase()
+    protected function getEnvironmentSetUp($app)
     {
-        $database = new DB;
-
-        $database->addConnection(['driver' => 'sqlite', 'database' => ':memory:']);
-        $database->bootEloquent();
-        $database->setAsGlobal();
+        $app['config']->set('database.default', 'testing');
+        $app['config']->set('database.connections.testing', [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => '',
+        ]);
     }
 
     /**
-     * Run any migrations to setup the schema for the database.
+     * Get package providers.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return array
      */
-    public function migrateTables()
+    protected function getPackageProviders($app)
     {
-        DB::schema()->create('pages', function ($table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->timestamps();
+        return [ApolloPagesServiceProvider::class];
+    }
+
+    /**
+     * Disable Laravel's exception handling when needed.
+     *
+     * @return StdClass
+     */
+    protected function disableExceptionHandling()
+    {
+        $this->app->instance(ExceptionHandler::class, new class extends Handler {
+            public function __construct() {}
+
+            public function report(\Exception $exception)
+            {
+                // no-op
+            }
+
+            public function render($request, \Exception $exception)
+            {
+                throw $exception;
+            }
         });
     }
 }

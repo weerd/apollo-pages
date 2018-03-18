@@ -11,8 +11,11 @@
          syntaxCheck="false"
 >
     <testsuites>
-        <testsuite name="Package Test Suite">
+        <testsuite name="ApolloPages Test Suite">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <env name="APP_KEY" value="base64:nYN2Gsn1LaCFRFXQvALnZWVOrHpUflpRKh24WXTlw3I="/>
+    </php>
 </phpunit>
