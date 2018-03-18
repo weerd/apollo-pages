@@ -9,9 +9,6 @@ use Weerd\ApolloPages\Models\ApolloPage;
 |--------------------------------------------------------------------------
 */
 
-/**
- * @var \Illuminate\Database\Eloquent\Factory $factory
- */
 $factory->define(ApolloPage::class, function (Faker $faker) {
     $pageTitle = $faker->words(2, true);
 
