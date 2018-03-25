@@ -1,42 +1,53 @@
 {
-  "name": "weerd/apollo-pages",
-  "description": "Laravel package to provide static page CMS.",
-  "keywords": ["pages", "cms", "laravel"],
-  "license": "MIT",
-  "support": {
-    "issues": "https://github.com/weerd/apollo-pages/issues",
-    "source": "https://github.com/weerd/apollo-pages"
-  },
-  "authors": [
-    {
-      "name": "Diego Lorenzo",
-      "email": "diego@diegolorenzo.com"
-    }
-  ],
-  "require": {
-    "illuminate/console": "~5.5",
-    "illuminate/database": "~5.5",
-    "illuminate/routing": "~5.5",
-    "illuminate/support": "~5.5"
-  },
-  "require-dev": {
-    "fzaninotto/faker": "^1.7",
-    "orchestra/testbench": "~3.0",
-    "phpunit/phpunit": "~6.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Weerd\\ApolloPages\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Weerd\\ApolloPages\\Tests\\": "tests/"
-    }
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "name": "weerd/apollo-pages",
+    "description": "Laravel package to provide static page CMS.",
+    "version": "1.1.1-dev",
+    "keywords": ["pages", "cms", "laravel"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/weerd/apollo-pages/issues",
+        "source": "https://github.com/weerd/apollo-pages"
+    },
+    "authors": [
+        {
+            "name": "Diego Lorenzo",
+            "email": "diego@diegolorenzo.com"
+        }
+    ],
+    "require": {
+        "illuminate/console": "~5.5",
+        "illuminate/database": "~5.5",
+        "illuminate/routing": "~5.5",
+        "illuminate/support": "~5.5"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.7",
+        "orchestra/testbench": "~3.0",
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Weerd\\ApolloPages\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Weerd\\ApolloPages\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Weerd\\ApolloPages\\ApolloPagesServiceProvider"
+            ],
+            "aliases": {
+                "ApolloPages": "Weerd\\ApolloPages\\Facades\\ApolloPages"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

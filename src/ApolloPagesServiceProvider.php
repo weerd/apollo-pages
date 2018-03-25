@@ -13,8 +13,6 @@ class ApolloPagesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'apollo-pages');
 
         if ($this->app->runningInConsole()) {
@@ -27,12 +25,14 @@ class ApolloPagesServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the service provider.
+     * Register bindings in the container.
      *
      * @return void
      */
     public function register()
     {
+        $this->app->instance('apollopages', (new ApolloPages));
+
         $this->app->make(Http\Controllers\Admin\PageController::class);
         $this->app->make(Http\Controllers\Client\PageController::class);
     }
