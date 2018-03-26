@@ -3,6 +3,7 @@
 namespace Weerd\ApolloPages;
 
 use Illuminate\Support\ServiceProvider;
+use Weerd\ApolloPages\Models\ApolloPage;
 
 class ApolloPagesServiceProvider extends ServiceProvider
 {
@@ -24,10 +25,14 @@ class ApolloPagesServiceProvider extends ServiceProvider
                 __DIR__.'/../resources/views' => resource_path('views/vendor/apollo-pages'),
             ], 'apollo-pages-views');
         }
+
+        view()->composer('apollo-pages::pages.admin.create', function ($view) {
+            $view->with('pages', ApolloPage::all());
+        });
     }
 
     /**
-     * Register the service provider.
+     * Register bindings in the container.
      *
      * @return void
      */
