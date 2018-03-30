@@ -2,6 +2,7 @@
 
 namespace Weerd\ApolloPages\Models;
 
+use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Model;
 
 class ApolloPage extends Model
@@ -96,6 +97,29 @@ class ApolloPage extends Model
         }
 
         return 1;
+    }
+
+    /**
+     * Get HTML markup for body field.
+     *
+     * @param  string $value
+     * @return string
+     */
+    public function getBodyMarkupAttribute($value)
+    {
+        return new HtmlString($value);
+    }
+
+    /**
+     * Scope a query to only include pages that are children of a specified parent id.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  mixed $id
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeChildrenOf($query, $id)
+    {
+        return $query->where('parent_id', $id);
     }
 
     /**

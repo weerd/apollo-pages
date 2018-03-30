@@ -18,23 +18,32 @@
         @endif
 
         <div>
-            <label>Title:</label>
-            <input type="text" name="title" value="{{ old('title') }}" autofocus />
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" value="{{ old('title') }}" autofocus />
         </div>
 
         <div>
-            <label>Slug:</label>
-            <input type="text" name="slug" value="{{ old('slug') }}" />
+            <label for="slug">Slug:</label>
+            <input type="text" name="slug" id="slug" value="{{ old('slug') }}" />
         </div>
 
         <div>
-            <label>Parent page:</label>
-            <input type="text" name="parent_id" value="{{ old('parent_id') }}" />
+            <label for="parent_id">Parent page:</label>
+            <select name="parent_id" id="parent_id">
+                <option value="">None</option>
+                @if($pageList->count())
+                    @foreach($pageList as $pageItem)
+                        <option value="{{ $pageItem->id }}" {{ (int) old('parent_id') === $pageItem->id ? 'selected' : '' }}>
+                            {{ $pageItem->title }}
+                        </option>
+                    @endforeach
+                @endif
+            </select>
         </div>
 
         <div>
-            <label>Body:</label>
-            <textarea name="body" value="{{ old('body') }}" rows="10" cols="50"></textarea>
+            <label for="body">Body:</label>
+            <textarea name="body" id="body" value="{{ old('body') }}" rows="10" cols="50"></textarea>
         </div>
 
         <div>

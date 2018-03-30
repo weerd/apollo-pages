@@ -2,13 +2,20 @@
 
 namespace Weerd\ApolloPages\Http\Controllers\Admin;
 
+use Parsedown;
 use Illuminate\Http\Request;
 use Weerd\ApolloPages\Models\ApolloPage as Page;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Weerd\ApolloPages\Http\Controllers\Controller as BaseController;
 
 class PageController extends BaseController
 {
+    /**
+     * Parsedown instance.
+     *
+     * @var Parsedown
+     */
+    public $parsedown;
+
     /**
      * Create a new controller instance.
      *
@@ -17,6 +24,8 @@ class PageController extends BaseController
     public function __construct()
     {
         $this->middleware(['web', 'auth']);
+
+        $this->parsedown = new Parsedown;
     }
 
     /**
@@ -50,9 +59,9 @@ class PageController extends BaseController
         $request = Page::assignProcessedAttributes($request);
 
         $this->validate($request, [
-            'slug' => 'required',
-            'path' => 'required|unique:pages',
             'parent_id' => 'nullable|numeric',
+            'path' => 'required|unique:pages',
+            'slug' => 'required',
             'tier' => 'required|digits:1',
             'title' => 'required',
         ]);
@@ -64,6 +73,9 @@ class PageController extends BaseController
             'tier' => $request->input('tier'),
             'title' => $request->input('title'),
             'body' => $request->input('body'),
+            'body_markup' => $this->parsedown->text(
+                strip_tags($request->input('body'))
+            ),
         ]);
 
         return redirect()->route('admin.pages.index');
@@ -106,6 +118,27 @@ class PageController extends BaseController
     {
         $page = Page::find($id);
 
+        $request = Page::assignProcessedAttributes($request);
+
+        $rules = [
+            'parent_id' => 'nullable|numeric',
+            'slug' => 'required',
+            'tier' => 'required|digits:1',
+            'title' => 'required',
+        ];
+
+        if ($page->slug !== $request->input('slug')) {
+            $rules['path'] = 'required|unique:pages';
+        }
+
+        $this->validate($request, $rules);
+
+        $request->merge([
+            'body_markup' => $this->parsedown->text(
+                strip_tags($request->input('body'))
+            ),
+        ]);
+
         $page->fill($request->all())->save();
 
         return redirect()->route('admin.pages.index');
@@ -119,13 +152,7 @@ class PageController extends BaseController
      */
     public function destroy($id)
     {
-        $page = Page::findOrFail($id);
-
-        $deletion = $page->destroy($id);
-
-        if (! $deletion) {
-            throw new ModelNotFoundException;
-        }
+        $page = Page::findOrFail($id)->destroy($id);
 
         return redirect()->route('admin.pages.index');
     }

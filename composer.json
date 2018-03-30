@@ -14,6 +14,7 @@
     }
   ],
   "require": {
+    "erusev/parsedown": "^1.7",
     "illuminate/console": "~5.5",
     "illuminate/database": "~5.5",
     "illuminate/routing": "~5.5",
