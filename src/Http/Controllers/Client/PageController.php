@@ -27,6 +27,18 @@ class PageController extends BaseController
     {
         $page = Page::where('path', '=', $path)->firstOrFail();
 
-        return view('apollo-pages::pages.client.show', ['page' => $page]);
+        $parent_id = $page->parent_id ?: $page->id;
+
+        $parentPage = null;
+
+        if ($parent_id !== $page->id) {
+            $parentPage = Page::find($parent_id);
+        }
+
+        return view('apollo-pages::pages.client.show', [
+            'page' => $page,
+            'subpages' => Page::childrenOf($parent_id)->get(),
+            'parentPage' => $parentPage,
+        ]);
     }
 }

@@ -31,9 +31,11 @@
             <label for="parent_id">Parent page:</label>
             <select name="parent_id" id="parent_id">
                 <option value="">None</option>
-                @if($pages->count())
-                    @foreach($pages as $page)
-                        <option value="{{ $page->id }}" {{ old('parent_id') === (string) $page->id ? 'selected' : '' }}>{{ $page->title }}</option>
+                @if($pageList->count())
+                    @foreach($pageList as $pageItem)
+                        <option value="{{ $pageItem->id }}" {{ (int) old('parent_id') === $pageItem->id ? 'selected' : '' }}>
+                            {{ $pageItem->title }}
+                        </option>
                     @endforeach
                 @endif
             </select>

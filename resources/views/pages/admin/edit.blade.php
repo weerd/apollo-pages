@@ -34,8 +34,19 @@
         </div>
 
         <div>
-            <label>Parent page:</label>
-            <input type="text" name="parent_id" value="{{ $page->parent_id or old('parent_id') }}" />
+            <label for="parent_id">Parent page:</label>
+            <select name="parent_id" id="parent_id">
+                <option value="">None</option>
+                @if($pageList->count())
+                    @foreach($pageList as $pageItem)
+                        <option value="{{ $pageItem->id }}"
+                            {{ ((int) old('parent_id') === $pageItem->id) || ($page->parent_id === $pageItem->id) ? 'selected' : '' }}
+                        >
+                            {{ $pageItem->title }}
+                        </option>
+                    @endforeach
+                @endif
+            </select>
         </div>
 
         <div>

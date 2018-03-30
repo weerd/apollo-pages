@@ -26,8 +26,11 @@ class ApolloPagesServiceProvider extends ServiceProvider
             ], 'apollo-pages-views');
         }
 
-        view()->composer('apollo-pages::pages.admin.create', function ($view) {
-            $view->with('pages', ApolloPage::all());
+        view()->composer([
+            'apollo-pages::pages.admin.create',
+            'apollo-pages::pages.admin.edit',
+        ], function ($view) {
+            $view->with('pageList', ApolloPage::all());
         });
     }
 
