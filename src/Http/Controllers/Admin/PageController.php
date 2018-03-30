@@ -5,7 +5,6 @@ namespace Weerd\ApolloPages\Http\Controllers\Admin;
 use Parsedown;
 use Illuminate\Http\Request;
 use Weerd\ApolloPages\Models\ApolloPage as Page;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Weerd\ApolloPages\Http\Controllers\Controller as BaseController;
 
 class PageController extends BaseController
