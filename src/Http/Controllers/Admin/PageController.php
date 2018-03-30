@@ -116,17 +116,22 @@ class PageController extends BaseController
      */
     public function update(Request $request, $id)
     {
+        $page = Page::find($id);
+
         $request = Page::assignProcessedAttributes($request);
 
-        $this->validate($request, [
+        $rules = [
             'parent_id' => 'nullable|numeric',
-            'path' => 'required|unique:pages',
             'slug' => 'required',
             'tier' => 'required|digits:1',
             'title' => 'required',
-        ]);
+        ];
 
-        $page = Page::find($id);
+        if ($page->slug !== $request->input('slug')) {
+            $rules['path'] = 'required|unique:pages';
+        }
+
+        $this->validate($request, $rules);
 
         $request->merge([
             'body_markup' => $this->parsedown->text(
