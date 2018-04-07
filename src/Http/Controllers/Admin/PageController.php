@@ -67,15 +67,15 @@ class PageController extends BaseController
         ]);
 
         $page = Page::create([
-            'slug' => $request->input('slug'),
-            'path' => $request->input('path'),
-            'parent_id' => $request->input('parent_id'),
-            'tier' => $request->input('tier'),
-            'title' => $request->input('title'),
             'body' => $request->input('body'),
             'body_markup' => $this->parsedown->text(
                 strip_tags($request->input('body'))
             ),
+            'parent_id' => $request->input('parent_id'),
+            'path' => $request->input('path'),
+            'slug' => $request->input('slug'),
+            'tier' => $request->input('tier'),
+            'title' => $request->input('title'),
         ]);
 
         return redirect()->route('admin.pages.index');

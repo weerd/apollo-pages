@@ -10,7 +10,8 @@
   "authors": [
     {
       "name": "Diego Lorenzo",
-      "email": "diego@diegolorenzo.com"
+      "email": "diego@diegolorenzo.com",
+      "homepage": "http://diegolorenzo.com"
     }
   ],
   "require": {
