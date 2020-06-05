@@ -31,9 +31,9 @@ abstract class TestCase extends BaseTestCase
     {
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
     }
 
@@ -56,7 +56,9 @@ abstract class TestCase extends BaseTestCase
     protected function disableExceptionHandling()
     {
         $this->app->instance(ExceptionHandler::class, new class extends Handler {
-            public function __construct() {}
+            public function __construct()
+            {
+            }
 
             public function report(\Exception $exception)
             {
