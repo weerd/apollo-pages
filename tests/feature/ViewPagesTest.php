@@ -4,7 +4,6 @@ namespace Weerd\ApolloPages\Tests\Feature;
 
 use Illuminate\Foundation\Auth\User;
 use Weerd\ApolloPages\Tests\TestCase;
-use Illuminate\Support\Facades\Artisan;
 use Weerd\ApolloPages\Models\ApolloPage as Page;
 
 class ViewPagesTest extends TestCase
