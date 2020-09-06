@@ -1,4 +1,4 @@
-<h1 align="center">Apollo Pages</h1>
+<h1 align="center">Laravel Apollo Pages</h1>
 
 <p align="center">
 <a href="https://travis-ci.org/weerd/apollo-pages"><img src="https://travis-ci.org/weerd/apollo-pages.svg?branch=master" alt="Build Status"></a>
@@ -6,15 +6,14 @@
 <a href="https://packagist.org/packages/weerd/apollo-pages"><img src="https://poser.pugx.org/weerd/apollo-pages/license.svg?format=flat" alt="License"></a>
 </p>
 
-
 ## Introduction
-Apollo Pages is a package for Laravel 5 that provides scaffolding and functionality for generating static pages in a CMS-like nature.
 
-
+Apollo Pages is a package for Laravel that provides scaffolding and functionality for generating and presenting static pages in a plug-and-play, CMS-like fashion.
 
 ## Installation
 
 ### Step 1: Composer
+
 From the command line, run:
 
 ```shell
@@ -22,6 +21,7 @@ $ composer require weerd/apollo-pages
 ```
 
 ### Step 2: Service Provider
+
 Within your Laravel project, open `config/app.php` and, at the end of the `providers` array, append:
 
 ```php
@@ -43,17 +43,17 @@ Within your Laravel project, open `config/app.php` and, at the end of the `provi
 This will bootstrap the package into Laravel. To have `ApolloPages` work correctly and behave as a catch all for routes specifiying custom pages, the routes for the package need to be considered _after_ the main application routes defined in `/routes/web.php`. For this behavior, the `ApolloPagesServiceProvider` needs to be defined at the very end of the `providers` array.
 
 ### Step 3: Migrate
+
 Next, run the migration to add the `pages` table to your database:
 
 ```shell
 $ php artisan migrate
 ```
 
-
-
 ## Customization
 
 ### Publish Vendor Files
+
 The `ApolloPages` package makes use of the `artisan publish` command to allow user's to publish some of this package's files to their project so that they can easily be overridden and customized by the package user.
 
 You can publish all available publishable package files to your project by running:
@@ -75,4 +75,3 @@ $ php artisan vendor:publish
 ```
 
 And then follow the prompt.
-
