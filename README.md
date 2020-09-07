@@ -1,6 +1,6 @@
 <h1 align="center">Laravel Apollo Pages</h1>
 
-<h2 align="center">Create &amp; Manage Simple Static Pages</h2>
+<h3 align="center">Create &amp; Manage Simple Static Pages</h3>
 
 <p align="center">
     <a href="https://travis-ci.org/weerd/apollo-pages">
