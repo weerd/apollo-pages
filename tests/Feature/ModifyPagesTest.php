@@ -3,15 +3,15 @@
 namespace Weerd\ApolloPages\Tests\Feature;
 
 use Illuminate\Foundation\Auth\User;
-use Weerd\ApolloPages\Tests\TestCase;
 use Weerd\ApolloPages\Models\ApolloPage as Page;
+use Weerd\ApolloPages\Tests\TestCase;
 
 class ModifyPagesTest extends TestCase
 {
     /** @test */
     public function authenticated_user_can_create_a_new_page()
     {
-        $admin = new User;
+        $admin = new User();
 
         $pageTitle = 'Example Test Page';
 
@@ -32,7 +32,7 @@ class ModifyPagesTest extends TestCase
     /** @test */
     public function authenticated_user_can_update_an_existing_page()
     {
-        $admin = new User;
+        $admin = new User();
 
         $pageTitle = 'Example Test Page';
 
@@ -56,7 +56,7 @@ class ModifyPagesTest extends TestCase
     /** @test */
     public function authenticated_user_can_delete_an_existing_page()
     {
-        $admin = new User;
+        $admin = new User();
 
         $pageTitle = 'Example Test Page';
 

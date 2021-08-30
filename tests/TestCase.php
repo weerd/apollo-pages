@@ -2,8 +2,8 @@
 
 namespace Weerd\ApolloPages\Tests;
 
-use Orchestra\Testbench\Exceptions\Handler;
 use Illuminate\Contracts\Debug\ExceptionHandler;
+use Orchestra\Testbench\Exceptions\Handler;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Weerd\ApolloPages\ApolloPagesServiceProvider;
 
@@ -55,7 +55,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function disableExceptionHandling()
     {
-        $this->app->instance(ExceptionHandler::class, new class extends Handler {
+        $this->app->instance(ExceptionHandler::class, new class() extends Handler {
             public function __construct()
             {
             }

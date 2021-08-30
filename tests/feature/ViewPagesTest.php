@@ -3,8 +3,8 @@
 namespace Weerd\ApolloPages\Tests\Feature;
 
 use Illuminate\Foundation\Auth\User;
-use Weerd\ApolloPages\Tests\TestCase;
 use Weerd\ApolloPages\Models\ApolloPage as Page;
+use Weerd\ApolloPages\Tests\TestCase;
 
 class ViewPagesTest extends TestCase
 {
@@ -59,7 +59,7 @@ class ViewPagesTest extends TestCase
     /** @test */
     public function authenticated_user_can_view_admin_page_listing()
     {
-        $admin = new User;
+        $admin = new User();
 
         $response = $this->actingAs($admin)->get('admin/pages');
 
@@ -70,7 +70,7 @@ class ViewPagesTest extends TestCase
     /** @test */
     public function authenticated_user_can_view_admin_create_page_form()
     {
-        $admin = new User;
+        $admin = new User();
 
         $response = $this->actingAs($admin)->get('admin/pages/create');
 
@@ -81,7 +81,7 @@ class ViewPagesTest extends TestCase
     /** @test */
     public function authenticated_user_can_view_admin_edit_page_form()
     {
-        $admin = new User;
+        $admin = new User();
 
         $pageTitle = 'Example Test Page';
 
@@ -102,7 +102,7 @@ class ViewPagesTest extends TestCase
     {
         $this->followingRedirects();
 
-        $admin = new User;
+        $admin = new User();
 
         $pageTitle = 'Example Test Page';
 
