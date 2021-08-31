@@ -2,8 +2,8 @@
 
 namespace Weerd\ApolloPages\Models;
 
-use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\HtmlString;
 
 class ApolloPage extends Model
 {

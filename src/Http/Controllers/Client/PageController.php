@@ -2,8 +2,8 @@
 
 namespace Weerd\ApolloPages\Http\Controllers\Client;
 
-use Weerd\ApolloPages\Models\ApolloPage as Page;
 use Weerd\ApolloPages\Http\Controllers\Controller as BaseController;
+use Weerd\ApolloPages\Models\ApolloPage as Page;
 
 class PageController extends BaseController
 {

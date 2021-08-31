@@ -2,10 +2,10 @@
 
 namespace Weerd\ApolloPages\Http\Controllers\Admin;
 
-use Parsedown;
 use Illuminate\Http\Request;
-use Weerd\ApolloPages\Models\ApolloPage as Page;
+use Parsedown;
 use Weerd\ApolloPages\Http\Controllers\Controller as BaseController;
+use Weerd\ApolloPages\Models\ApolloPage as Page;
 
 class PageController extends BaseController
 {
@@ -25,7 +25,7 @@ class PageController extends BaseController
     {
         $this->middleware(['web', 'auth']);
 
-        $this->parsedown = new Parsedown;
+        $this->parsedown = new Parsedown();
     }
 
     /**

@@ -2,8 +2,8 @@
 
 namespace Weerd\ApolloPages\Tests;
 
-use Orchestra\Testbench\Exceptions\Handler;
 use Illuminate\Contracts\Debug\ExceptionHandler;
+use Orchestra\Testbench\Exceptions\Handler;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Weerd\ApolloPages\ApolloPagesServiceProvider;
 
@@ -12,7 +12,7 @@ abstract class TestCase extends BaseTestCase
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -31,9 +31,9 @@ abstract class TestCase extends BaseTestCase
     {
         $app['config']->set('database.default', 'testing');
         $app['config']->set('database.connections.testing', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
     }
 
@@ -55,8 +55,10 @@ abstract class TestCase extends BaseTestCase
      */
     protected function disableExceptionHandling()
     {
-        $this->app->instance(ExceptionHandler::class, new class extends Handler {
-            public function __construct() {}
+        $this->app->instance(ExceptionHandler::class, new class() extends Handler {
+            public function __construct()
+            {
+            }
 
             public function report(\Exception $exception)
             {
