@@ -4,6 +4,7 @@ namespace Weerd\ApolloPages\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 
 class ApolloPage extends Model
 {
@@ -79,7 +80,7 @@ class ApolloPage extends Model
             $value = $request->input('title');
         }
 
-        return str_slug($value);
+        return Str::slug($value);
     }
 
     /**
@@ -130,7 +131,7 @@ class ApolloPage extends Model
      */
     public function setSlugAttribute($value)
     {
-        $this->attributes['slug'] = str_slug($value);
+        $this->attributes['slug'] = Str::slug($value);
     }
 
     /**
