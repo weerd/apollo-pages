@@ -20,17 +20,17 @@
 
         <div>
             <label>Title:</label>
-            <input type="text" name="title" value="{{ $page->title or old('title') }}" autofocus />
+            <input type="text" name="title" value="{{ $page->title ?? old('title') }}" autofocus />
         </div>
 
         <div>
             <label>Slug:</label>
-            <input type="text" name="slug" value="{{ $page->slug or old('slug') }}" />
+            <input type="text" name="slug" value="{{ $page->slug ?? old('slug') }}" />
         </div>
 
         <div>
             <label>Path:</label>
-            <input type="text" name="path" value="{{ $page->path or old('path') }}" disabled="disabled" />
+            <input type="text" name="path" value="{{ $page->path ?? old('path') }}" disabled="disabled" />
         </div>
 
         <div>
@@ -51,7 +51,7 @@
 
         <div>
             <label>Body:</label>
-            <textarea name="body" rows="10" cols="50">{{ $page->body or old('body') }}</textarea>
+            <textarea name="body" rows="10" cols="50">{{ $page->body ?? old('body') }}</textarea>
         </div>
 
         <div>
