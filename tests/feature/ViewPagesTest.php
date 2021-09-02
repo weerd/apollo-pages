@@ -3,6 +3,8 @@
 namespace Weerd\ApolloPages\Tests\Feature;
 
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Str;
+
 use Weerd\ApolloPages\Models\ApolloPage as Page;
 use Weerd\ApolloPages\Tests\TestCase;
 
@@ -24,8 +26,8 @@ class ViewPagesTest extends TestCase
 
         $page = factory(Page::class)->create([
             'title' => $pageTitle,
-            'slug' => str_slug($pageTitle),
-            'path' => str_slug($pageTitle),
+            'slug' => Str::slug($pageTitle),
+            'path' => Str::slug($pageTitle),
         ]);
 
         $response = $this->get($page->path);
@@ -87,8 +89,8 @@ class ViewPagesTest extends TestCase
 
         $page = factory(Page::class)->create([
             'title' => $pageTitle,
-            'slug' => str_slug($pageTitle),
-            'path' => str_slug($pageTitle),
+            'slug' => Str::slug($pageTitle),
+            'path' => Str::slug($pageTitle),
         ]);
 
         $response = $this->actingAs($admin)->get('admin/pages/'.$page->id.'/edit');
@@ -108,8 +110,8 @@ class ViewPagesTest extends TestCase
 
         $page = factory(Page::class)->create([
             'title' => $pageTitle,
-            'slug' => str_slug($pageTitle),
-            'path' => str_slug($pageTitle),
+            'slug' => Str::slug($pageTitle),
+            'path' => Str::slug($pageTitle),
         ]);
 
         $response = $this->actingAs($admin)->get('admin/pages/'.$page->id);

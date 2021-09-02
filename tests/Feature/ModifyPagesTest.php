@@ -3,6 +3,8 @@
 namespace Weerd\ApolloPages\Tests\Feature;
 
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Str;
+
 use Weerd\ApolloPages\Models\ApolloPage as Page;
 use Weerd\ApolloPages\Tests\TestCase;
 
@@ -16,8 +18,8 @@ class ModifyPagesTest extends TestCase
         $pageTitle = 'Example Test Page';
 
         $response = $this->actingAs($admin)->json('POST', '/admin/pages', [
-            'slug' => str_slug($pageTitle),
-            'path' => str_slug($pageTitle),
+            'slug' => Str::slug($pageTitle),
+            'path' => Str::slug($pageTitle),
             'title' => $pageTitle,
         ]);
 
@@ -38,8 +40,8 @@ class ModifyPagesTest extends TestCase
 
         $page = factory(Page::class)->create([
             'title' => $pageTitle,
-            'slug' => str_slug($pageTitle),
-            'path' => str_slug($pageTitle),
+            'slug' => Str::slug($pageTitle),
+            'path' => Str::slug($pageTitle),
         ]);
 
         $response = $this->actingAs($admin)->json('PATCH', '/admin/pages/'.$page->id, [
@@ -62,8 +64,8 @@ class ModifyPagesTest extends TestCase
 
         $page = factory(Page::class)->create([
             'title' => $pageTitle,
-            'slug' => str_slug($pageTitle),
-            'path' => str_slug($pageTitle),
+            'slug' => Str::slug($pageTitle),
+            'path' => Str::slug($pageTitle),
         ]);
 
         $response = $this->actingAs($admin)->json('DELETE', '/admin/pages/'.$page->id);
